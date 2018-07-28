@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', getPosts);
 
 document.querySelector(".post-submit").addEventListener('click',submitPost);
 
+document.querySelector("#posts").addEventListener('click',editPosts);
 
 function submitPost(){
   const data = ui.getInputValues();
@@ -24,4 +25,20 @@ function getPosts(){
   http.get('http://localhost:3000/posts')
   .then(data => ui.showPosts(data))
   .catch(err => console.log(err));
+}
+
+function editPosts(e){
+  const id = e.target.parentElement.dataset.id;
+  let body = e.target.parentElement.previousElementSibling.textContent;
+  let title = e.target.parentElement.previousElementSibling.previousElementSibling.textContent;
+
+  let data = {
+    id,
+    title,
+    body
+  }
+
+  ui.fillForm(data);
+
+  e.preventDefault();
 }

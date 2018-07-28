@@ -72,6 +72,12 @@ class UI{
             currentAlert.remove();
         }
     }
+
+    fillForm(data){
+      this.titleInput.value = data.title;
+      this.bodyInput.value = data.body;
+      this.idInput.value = data.id;
+    }
 }
 
 export const ui = new UI();
