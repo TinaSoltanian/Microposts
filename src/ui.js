@@ -73,10 +73,43 @@ class UI{
         }
     }
 
+    clearIdField(){
+        this.idInput.value = "";
+    }
+
+    changeFormState(type){
+        if (type === 'edit'){
+            this.postSubmit.textContent='Update post';
+            this.postSubmit.classList = 'post-submit btn btn-warning btn-block';
+
+            // create cancel button
+            const cancelButton = document.createElement('button');
+            cancelButton.appendChild(document.createTextNode("Cancel Edit"));
+            cancelButton.className = "post-cancel btn btn-light btn-block";   
+
+            const cardBody = document.querySelector(".card-form");
+            const formEnd = document.querySelector(".form-end");
+            cardBody.insertBefore(cancelButton, formEnd);
+        }else{
+            this.postSubmit.textContent='Post it';
+            this.postSubmit.classList = 'post-submit btn btn-primary btn-block';
+
+            this.clearField();
+            this.clearIdField();
+
+            const cancelButton = document.querySelector('.post-cancel');
+            if (cancelButton){
+                cancelButton.remove();
+            }
+        }
+    }
+
     fillForm(data){
       this.titleInput.value = data.title;
       this.bodyInput.value = data.body;
       this.idInput.value = data.id;
+
+      this.changeFormState('edit');
     }
 }
 
