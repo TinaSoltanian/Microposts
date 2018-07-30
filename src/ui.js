@@ -41,6 +41,11 @@ class UI{
         }
     }
 
+    getId(){
+        let id = this.idInput.value;  
+        return id;
+    }
+
     clearField(){
         this.titleInput.value = "";
         this.bodyInput.value = "";
